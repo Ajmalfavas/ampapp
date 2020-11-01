@@ -30,7 +30,7 @@ class App extends React.Component {
     const newItem = this.state.currentItem;
     if(newItem.text !==""){
       
-      //trying post data to mongoDB
+      //Trying post data to mongoDB
       axios.post('http://localhost:4000/students/create-student', this.state.currentItem)
       .then(res => console.log(res.data));
 
