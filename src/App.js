@@ -2,6 +2,9 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import ListItems from './ListItems'
+
+import axios from 'axios';
+
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
@@ -26,8 +29,15 @@ class App extends React.Component {
     e.preventDefault();
     const newItem = this.state.currentItem;
     if(newItem.text !==""){
+      
+      //trying post data to DB
+      axios.post('http://localhost:4000/students/create-student', this.state.currentItem)
+      .then(res => console.log(res.data));
+
+       //this.setState({ name: ''})
+
       const items = [...this.state.items, newItem];
-    this.setState({
+      this.setState({
       items: items,
       currentItem:{
         text:'',
