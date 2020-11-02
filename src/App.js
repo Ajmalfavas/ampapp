@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import ListItems from './ListItems'
 
@@ -31,8 +30,8 @@ class App extends React.Component {
     if(newItem.text !==""){
       
       //Trying post data to mongoDB
-      axios.post('http://localhost:4000/students/create-student', this.state.currentItem)
-      //.then(res => console.log(res.data));
+      axios.post('http://localhost:4000/students/create-student', newItem)
+      .then(res => console.log(res.data));
 
        //this.setState({ name: ''})
 
@@ -55,13 +54,22 @@ class App extends React.Component {
     })
   }
   deleteItem(key){
+
+      
+      axios.delete('http://localhost:4000/students/delete-student/' + this.props.item.key)
+          .then((res) => {
+              console.log('Student successfully deleted!')
+          }).catch((error) => {
+              console.log(error)
+          })
+  
     const filteredItems= this.state.items.filter(item =>
       item.key!==key);
     this.setState({
       items: filteredItems
     })
 
-  }
+}
   setUpdate(text,key){
     console.log("items:"+this.state.items);
     const items = this.state.items;
