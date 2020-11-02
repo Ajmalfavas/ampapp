@@ -32,7 +32,7 @@ class App extends React.Component {
       
       //Trying post data to mongoDB
       axios.post('http://localhost:4000/students/create-student', this.state.currentItem)
-      .then(res => console.log(res.data));
+      //.then(res => console.log(res.data));
 
        //this.setState({ name: ''})
 
